@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunao.mybatis.collection.UsersOP">
+	<select id="getUser" parameterType="int" 
+		resultMap="UserMap">
+		
+		<!-- 单独查询users -->
+		<!-- select u.id as userId,userName,corp from users u where u.id = #{id} -->
+		
+		<!-- 查询users、course -->
+		<!-- select u.id as userId,userName,courseName,corp, c.id as courseId 
+		from users u left join usercourse uc on u.id=uc.user_id
+		left join course c on c.id=uc.course_id where u.id = #{id} -->
+		
+		<!-- 查询users、course和teacher -->
+		select u.id
+		as userId,userName,corp,courseName,c.id as courseId,teacher.id as
+		teacherId,teacherName from users u left join
+		usercourse uc on u.id=uc.user_id left join course c on c.id = uc.course_id
+		left join teacher
+		on teacher.id = c.teacher_id where u.id= #{id}
+	</select>
+	
+	<resultMap type="com.sunao.mybatis.collection.Users" id="UserMap">
+		<!-- constructor要求对应构造方法的参数类型需要是包装类
+		colunm属性值可以写col的别名 -->
+		<constructor>
+			<idArg column="userId" javaType="int" />
+			<arg column="userName" javaType="String" />
+			<arg column="corp" javaType="String" />
+		</constructor>
+		<!-- property属性值为Users类的List成员变量courses的名字
+		ofType属性值为对应的泛型，同样column属性值可以写col的别名 -->
+		<collection property="courses" ofType="com.sunao.mybatis.collection.Course">
+			<id property="id" column="courseId" />
+			<result property="courseName" column="courseName" />
+			<!-- property属性值为Course类的成员变量teacher的名字，column为对应的数据库中存储的列名
+			javaType属性值为teacher对应的类型，同样column属性值可以写col的别名 -->
+			<association property="teacher" column="teacher_id" javaType="com.sunao.mybatis.collection.Teacher">
+				<id property="id" column="teacherId" />
+				<result property="teacherName" column="teacherName" />
+			</association>
+		</collection>
+		<!-- 直接用id和result则不会对包装类有特殊的要求 -->
+		<!-- <id property="id" column="userId" />
+		<result property="userName" column="userName" />
+		<result property="corp" column="corp" /> -->
+	</resultMap>
+	
+	<!-- <insert id="addUser" parameterType="com.sunao.mybatis.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user(userName,sex,password,account)
+		values(#{userName},#{sex},#{password},#{account})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.sunao.mybatis.User">
+		update user set sex = #{sex},password = #{password},account = #{account}
+		where userName = #{userName}
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user where userName = #{userName}
+	</delete> -->
+</mapper>

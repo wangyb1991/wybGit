@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0">
+	<display-name>servletTest</display-name>
+
+	<!-- servletTest servlet -->
+	<servlet>
+		<servlet-name>servletTest</servlet-name>
+		<servlet-class>com.netease.ServletTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletTest</servlet-name>
+		<url-pattern>/servletTest</url-pattern>
+	</servlet-mapping>
+	
+	<!-- asynchronousTest servlet -->
+	<servlet>
+		<servlet-name>firstServlet</servlet-name>
+		<servlet-class>com.netease.FirstServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>firstServlet</servlet-name>
+		<url-pattern>/firstServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>secondServlet</servlet-name>
+		<servlet-class>com.netease.SecondServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>secondServlet</servlet-name>
+		<url-pattern>/secondServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- servletForward servlet -->
+	<servlet>
+		<servlet-name>servletForward</servlet-name>
+		<servlet-class>com.netease.ServletForward</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletForward</servlet-name>
+		<url-pattern>/servletForward</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>servletForwardExample</servlet-name>
+		<servlet-class>com.netease.ServletForwardExample</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletForwardExample</servlet-name>
+		<url-pattern>/servletForwardExample</url-pattern>
+	</servlet-mapping>
+	
+	<!-- servletredirect servlet -->
+	<servlet>
+		<servlet-name>servletRedirect</servlet-name>
+		<servlet-class>com.netease.ServletRedirect</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletRedirect</servlet-name>
+		<url-pattern>/servletRedirect</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>servletRedirectExample</servlet-name>
+		<servlet-class>com.netease.ServletRedirectExample</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletRedirectExample</servlet-name>
+		<url-pattern>/servletRedirectExample</url-pattern>
+	</servlet-mapping>
+
+	<!-- getPostServlet servlet -->
+	<servlet>
+		<servlet-name>getPostServlet</servlet-name>
+		<servlet-class>com.netease.GetPostServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getPostServlet</servlet-name>
+		<url-pattern>/getPostServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- servletConfig servlet -->
+	<servlet>
+		<init-param>
+			<param-name>data1</param-name>
+			<param-value>value1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>data2</param-name>
+			<param-value>value2</param-value>
+		</init-param>
+		<servlet-name>servletConfigServlet</servlet-name>
+		<servlet-class>com.netease.ServletConfigServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletConfigServlet</servlet-name>
+		<url-pattern>/servletConfigServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- servletContext servlet -->
+	<context-param>
+		<param-name>globalData1</param-name>
+		<param-value>123</param-value>
+	</context-param>
+	<context-param>
+		<param-name>globalData2</param-name>
+		<param-value>345</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>servletContextServlet</servlet-name>
+		<servlet-class>com.netease.ServletContextServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletContextServlet</servlet-name>
+		<url-pattern>/servletContextServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- session config value is minute -->
+	<!-- <session-config>
+		<session-timeout>2</session-timeout>
+	</session-config> -->
+</web-app>

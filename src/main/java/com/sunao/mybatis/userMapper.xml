@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunao.mybatis.UserOP">
+	<select id="getUser" parameterType="String" 
+		resultType="com.sunao.mybatis.User">
+		select userName,sex,password,account from user where userName =#{userName}
+	</select>
+	
+	<insert id="addUser" parameterType="com.sunao.mybatis.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user(userName,sex,password,account)
+		values(#{userName},#{sex},#{password},#{account})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.sunao.mybatis.User">
+		update user set sex = #{sex},password = #{password},account = #{account}
+		where userName = #{userName}
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user where userName = #{userName}
+	</delete>
+</mapper>
